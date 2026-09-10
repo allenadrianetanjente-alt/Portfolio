@@ -1,345 +1,835 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Allen — Portfolio</title>
-  <meta name="description" content="Portfolio of Allen — Information Systems student interested in fintech, quantitative trading, and brand design.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Allen Adriane Tanjente — Portfolio</title>
+<meta name="description" content="Portfolio of Allen Adriane Tanjente — Information Systems student interested in fintech, quantitative trading, and brand design.">
  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+ 
+<style>
+  :root{
+    --paper:#F2F3F6;
+    --surface:#FFFFFF;
+    --ink:#0D1321;
+    --ink-soft:#4A5062;
+    --accent:#2554FF;
+    --accent-soft:#E7ECFF;
+    --gain:#158F52;
+    --gain-soft:#E4F5EC;
+    --loss:#C23B3B;
+    --loss-soft:#FBE9E9;
+    --line:#DCDEE6;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+  }
+ 
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  section{padding:96px 0;}
+ 
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--ink);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    transition:padding .25s ease, box-shadow .25s ease;
+    padding:20px 0;
+  }
+  .nav.compact{padding:10px 0; box-shadow:0 8px 24px rgba(0,0,0,.25);}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:var(--font-display);font-weight:700;font-size:clamp(.92rem,2.6vw,1.15rem);color:#fff;white-space:nowrap;}
+  .brand span{color:var(--accent);}
+  .nav-links{display:flex;gap:8px;list-style:none;margin:0;padding:0;}
+  .nav-links a{
+    color:rgba(255,255,255,.72);
+    font-weight:500;font-size:.92rem;
+    padding:8px 14px;
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{color:#fff;}
+  .nav-toggle{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:#fff;padding:6px 10px;font-size:1rem;}
+  @media (max-width:820px){
+    .nav-links{display:none;}
+    .nav-toggle{display:inline-block;}
+    .nav-links.open{
+      display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+      background:var(--ink);padding:12px 24px 20px;gap:2px;
+    }
+  }
+ 
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 0;}
+  .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:center;}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+ 
+  .eyebrow{
+    font-size:.85rem;font-weight:600;color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow.gain{color:var(--gain);}
+ 
+  .badge-pill{
+    display:inline-block;
+    font-family:var(--font-mono);
+    font-size:.78rem;
+    color:var(--accent);
+    background:var(--accent-soft);
+    border:1px solid rgba(37,84,255,.25);
+    padding:6px 12px;
+    margin-bottom:20px;
+  }
+ 
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(2.4rem,4.6vw,3.6rem);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+  }
+ 
+  .lead{
+    font-size:1.1rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin:0 0 32px;
+  }
+ 
+  .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:48px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-body);font-weight:600;font-size:.95rem;
+    padding:13px 26px;
+    border:1.5px solid var(--ink);
+    cursor:pointer;
+    transition:transform .12s ease, background .15s ease, color .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--ink);color:#fff;}
+  .btn-solid:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .btn-outline{background:transparent;color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:#fff;}
+ 
+  .stat-row{display:flex;gap:36px;border-top:1px solid var(--line);padding-top:28px;flex-wrap:wrap;}
+  .stat-row div h4{font-family:var(--font-display);font-size:.9rem;font-weight:600;margin:0 0 4px;}
+  .stat-row div p{margin:0;font-size:.85rem;color:var(--ink-soft);}
+  .stat-row .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;}
+  .dot-accent{background:var(--accent);}
+  .dot-gain{background:var(--gain);}
+  .dot-ink{background:var(--ink);}
+ 
+  .portrait{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:10px;
+    box-shadow:0 24px 48px -24px rgba(13,19,33,.35);
+  }
+  .portrait img{filter:grayscale(45%) contrast(1.02);transition:filter .35s ease;}
+  .portrait:hover img{filter:grayscale(0%) contrast(1.02);}
+ 
+  /* ---------- Ticker ---------- */
+  .ticker{
+    background:var(--ink);
+    color:rgba(255,255,255,.75);
+    font-family:var(--font-mono);
+    font-size:.82rem;
+    overflow:hidden;
+    white-space:nowrap;
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:3px solid var(--accent);
+    margin-top:88px;
+  }
+  .ticker-track{
+    display:inline-block;
+    padding:14px 0;
+    animation:ticker 28s linear infinite;
+  }
+  .ticker-track span{margin:0 28px;}
+  .ticker-track .up{color:var(--gain);}
+  @keyframes ticker{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+ 
+  /* ---------- Section headers ---------- */
+  .section-head{margin-bottom:48px;max-width:640px;}
+  .section-head h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(1.7rem,2.6vw,2.2rem);
+    margin:0 0 6px;letter-spacing:-0.01em;
+  }
+  .section-head p{color:var(--ink-soft);margin:0;}
+ 
+  .skills{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media (max-width:860px){.card-grid{grid-template-columns:1fr;}}
+ 
+  .skill-card{
+    background:var(--paper);
+    border-left:4px solid var(--accent);
+    padding:28px;
+  }
+  .skill-card.gain{border-left-color:var(--gain);}
+  .skill-card.ink{border-left-color:var(--ink);}
+  .skill-icon{
+    width:44px;height:44px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--accent-soft);color:var(--accent);
+    margin-bottom:18px;font-size:1.2rem;
+  }
+  .skill-card.gain .skill-icon{background:var(--gain-soft);color:var(--gain);}
+  .skill-card.ink .skill-icon{background:#e9e9ec;color:var(--ink);}
+  .skill-card h3{font-family:var(--font-display);font-size:1.05rem;margin:0 0 14px;}
+  .skill-emoji{margin-right:4px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-size:.8rem;font-weight:500;
+    background:#fff;border:1px solid var(--line);
+    padding:6px 12px;
+  }
+ 
+  /* ---------- Projects ---------- */
+  .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media (max-width:860px){.project-grid{grid-template-columns:1fr;}}
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-top:4px solid var(--accent);
+    display:flex;flex-direction:column;
+    transition:transform .18s ease, box-shadow .18s ease;
+    overflow:hidden;
+  }
+  .project-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -28px rgba(13,19,33,.4);}
+  .project-card.gain{border-top-color:var(--gain);}
+  .project-card.ink{border-top-color:var(--ink);}
+  .project-body{padding:28px;display:flex;flex-direction:column;flex:1;}
+  .project-tag{
+    font-family:var(--font-mono);font-size:.72rem;
+    color:var(--accent);margin-bottom:14px;display:inline-block;
+  }
+  .project-card.gain .project-tag{color:var(--gain);}
+  .project-card h3{font-family:var(--font-display);font-size:1.15rem;margin:0 0 12px;}
+  .project-card p{color:var(--ink-soft);font-size:.95rem;line-height:1.55;flex:1;margin:0 0 20px;}
+  .project-link{font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;}
+ 
+  .note{
+    border:1px dashed var(--line);
+    padding:16px 20px;
+    color:var(--ink-soft);font-size:.9rem;
+    margin-top:32px;
+  }
+ 
+  /* ---------- Project slideshows ---------- */
+  .slideshow{
+    position:relative;
+    height:168px;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .slide{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    padding:18px 20px;
+    opacity:0;
+    transition:opacity .55s ease;
+    pointer-events:none;
+  }
+  .slide.active{opacity:1;pointer-events:auto;}
+  .slide-dots{
+    position:absolute;left:0;right:0;bottom:10px;
+    display:flex;justify-content:center;gap:9px;
+    z-index:3;
+  }
+  .slide-dots button{
+    width:12px;height:12px;border-radius:50%;
+    border:2px solid #fff;padding:0;background:var(--line);cursor:pointer;
+    box-shadow:0 1px 3px rgba(13,19,33,.25);
+    transition:background .2s ease, transform .2s ease;
+  }
+  .slide-dots button:hover{transform:scale(1.15);}
+  .slide-dots button.active{background:var(--accent);transform:scale(1.35);}
+  .project-card.gain .slide-dots button.active{background:var(--gain);}
+  .project-card.ink .slide-dots button.active{background:var(--ink);}
+ 
+  .slide-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:38px;height:38px;border-radius:50%;
+    border:none;background:rgba(13,19,33,.55);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;cursor:pointer;z-index:3;
+    opacity:0;transition:opacity .2s ease, background .2s ease, transform .15s ease;
+  }
+  .slide-nav:hover{background:rgba(13,19,33,.85);transform:translateY(-50%) scale(1.08);}
+  .slide-nav.prev{left:10px;}
+  .slide-nav.next{right:10px;}
+  .slideshow:hover .slide-nav,
+  .slideshow:focus-within .slide-nav{opacity:1;}
+  @media (hover:none){
+    .slide-nav{opacity:1;}
+  }
+ 
+  /* --- Trading slides --- */
+  .candles{display:flex;align-items:flex-end;gap:6px;height:88px;}
+  .candle{width:9px;border-radius:1px;transform-origin:bottom;animation:grow .6s ease forwards;}
+  .candle.up{background:var(--gain);}
+  .candle.down{background:var(--loss);}
+  @keyframes grow{from{transform:scaleY(0);}to{transform:scaleY(1);}}
+  .trend-wrap{width:100%;max-width:220px;}
+  .trend-wrap svg{width:100%;height:64px;display:block;}
+  .trend-dot{animation:travel 2.6s linear infinite;}
+  @keyframes travel{
+    0%{offset-distance:0%;}
+    100%{offset-distance:100%;}
+  }
+  .trend-label{font-family:var(--font-mono);font-size:.72rem;color:var(--gain);text-align:center;margin-top:8px;}
+  .trade-ticket{
+    background:#fff;border:1px solid var(--line);
+    padding:12px 16px;width:100%;max-width:220px;font-family:var(--font-mono);font-size:.78rem;
+  }
+  .trade-ticket .row{display:flex;justify-content:space-between;margin-bottom:4px;}
+  .trade-ticket .pnl{color:var(--gain);font-weight:600;}
+  .trade-badge{display:inline-block;background:var(--gain-soft);color:var(--gain);padding:2px 8px;font-size:.68rem;margin-bottom:8px;}
+ 
+  /* --- Booking slides --- */
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:180px;}
+  .cal-cell{
+    aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:.62rem;background:#fff;border:1px solid var(--line);color:var(--ink-soft);
+  }
+  .cal-cell.picked{
+    background:var(--accent);color:#fff;border-color:var(--accent);position:relative;
+    animation:pulse 1.6s ease infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(37,84,255,.35);}
+    50%{box-shadow:0 0 0 6px rgba(37,84,255,0);}
+  }
+  .chat-wrap{width:100%;max-width:220px;display:flex;flex-direction:column;gap:8px;}
+  .bubble{padding:8px 12px;font-size:.78rem;border-radius:12px;max-width:86%;}
+  .bubble.user{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:2px;}
+  .bubble.bot{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:2px;animation:pop .3s ease;}
+  @keyframes pop{from{opacity:0;transform:translateY(4px) scale(.96);}to{opacity:1;transform:translateY(0) scale(1);}}
+  .typing-dots{align-self:flex-end;display:flex;gap:3px;padding:8px 10px;}
+  .typing-dots span{width:5px;height:5px;border-radius:50%;background:var(--ink-soft);animation:bounce 1s infinite ease-in-out;}
+  .typing-dots span:nth-child(2){animation-delay:.15s;}
+  .typing-dots span:nth-child(3){animation-delay:.3s;}
+  @keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-4px);}}
+  .reminder-card{
+    background:#fff;border:1px solid var(--line);padding:12px 16px;width:100%;max-width:220px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .reminder-card i{font-size:1.2rem;color:var(--accent);animation:ring 1.8s ease infinite;}
+  @keyframes ring{0%,100%{transform:rotate(0);}10%{transform:rotate(-12deg);}20%{transform:rotate(10deg);}30%{transform:rotate(-8deg);}40%{transform:rotate(4deg);}50%{transform:rotate(0);}}
+  .reminder-card .txt div:first-child{font-weight:600;font-size:.82rem;}
+  .reminder-card .txt div:last-child{font-size:.72rem;color:var(--ink-soft);}
+ 
+  /* --- Java slides --- */
+  .terminal{
+    background:var(--ink);color:#d7ffe0;font-family:var(--font-mono);font-size:.72rem;
+    width:100%;max-width:230px;padding:12px 14px;line-height:1.6;
+  }
+  .terminal .c-key{color:#7fb2ff;}
+  .terminal .c-str{color:#ffd479;}
+  .terminal .cursor{display:inline-block;width:6px;height:11px;background:#d7ffe0;margin-left:2px;animation:blink 1s steps(1) infinite;vertical-align:middle;}
+  @keyframes blink{50%{opacity:0;}}
+  .console{
+    background:#fff;border:1px solid var(--line);font-family:var(--font-mono);font-size:.72rem;
+    width:100%;max-width:230px;padding:12px 14px;color:var(--ink-soft);line-height:1.7;
+  }
+  .console .ok{color:var(--gain);}
+  .badge-row{display:flex;flex-wrap:wrap;gap:8px;max-width:220px;justify-content:center;}
+  .check-badge{
+    display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);
+    padding:5px 10px;font-size:.72rem;font-family:var(--font-mono);opacity:0;
+    animation:pop-in .4s ease forwards;
+  }
+  .check-badge i{color:var(--gain);}
+  .check-badge:nth-child(1){animation-delay:.05s;}
+  .check-badge:nth-child(2){animation-delay:.25s;}
+  .check-badge:nth-child(3){animation-delay:.45s;}
+  @keyframes pop-in{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+ 
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+    .candle{animation:none;transform:scaleY(1);}
+    .trend-dot{animation:none;}
+    .cal-cell.picked{animation:none;}
+    .bubble.bot{animation:none;}
+    .typing-dots span{animation:none;}
+    .reminder-card i{animation:none;}
+    .cursor{animation:none;}
+    .check-badge{animation:none;opacity:1;}
+    .slide{transition:none;}
+  }
+ 
+  /* ---------- Contact ---------- */
+  .contact{background:var(--surface);border-top:1px solid var(--line);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media (max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{background:var(--paper);border:1px solid var(--line);padding:32px;}
+  .contact-card p{font-size:1.05rem;line-height:1.6;margin:0 0 24px;}
+ 
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-weight:600;font-size:.85rem;margin-bottom:6px;}
+  .field input, .field textarea{
+    width:100%;
+    font-family:var(--font-body);font-size:.95rem;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    background:#fff;
+  }
+  .field input:focus, .field textarea:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .form-hint{font-size:.8rem;color:var(--ink-soft);margin-top:10px;}
+ 
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:rgba(255,255,255,.6);padding:44px 0;border-top:3px solid var(--accent);}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+  .foot-brand{font-family:var(--font-display);color:#fff;font-weight:700;font-size:1.1rem;margin-bottom:4px;}
+  .foot-tagline{margin:0;font-size:.9rem;}
+  .foot-copy{margin:0;font-size:.85rem;}
+  .foot-icons{display:flex;gap:14px;font-size:1.15rem;}
+  .foot-icons a{
+    display:flex;align-items:center;justify-content:center;
+    width:42px;height:42px;border-radius:50%;
+    color:rgba(255,255,255,.75);
+    border:1.5px solid rgba(255,255,255,.25);
+    transition:color .15s ease, background .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .foot-icons a:hover{color:var(--ink);background:#fff;border-color:#fff;transform:translateY(-2px);}
+  hr.foot-rule{border:none;border-top:1px solid rgba(255,255,255,.12);margin:28px 0;}
+ 
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.show{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
 </head>
-<body class="bg-white">
+<body>
  
-  <header>
-    <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient sticky-top border-bottom border-primary border-3 py-3">
-      <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="#top">Allen</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navMenu" aria-controls="navMenu"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
-            <li class="nav-item"><a class="nav-link px-3" href="#skills">Skills</a></li>
-            <li class="nav-item"><a class="nav-link px-3" href="#projects">Projects</a></li>
-            <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
- 
-  <main id="top">
- 
-    <!-- ABOUT -->
-    <section id="about" class="bg-dark bg-gradient text-white min-vh-100 d-flex align-items-center">
-      <div class="container py-5">
-        <div class="row align-items-center gy-5">
-          <div class="col-lg-7">
-            <span id="heroBadge" class="badge text-bg-primary rounded-0 mb-3 px-3 py-2 fw-semibold fade">
-              Information Systems Student
-            </span>
-            <h1 id="heroHeadline" class="display-3 fw-bold mb-4 lh-sm fade">
-              Building at the edge of<br class="d-none d-lg-block"> markets and software.
-            </h1>
-            <p id="heroLead" class="fs-5 text-white-50 mb-4 col-12 col-xl-10 fade">
-              I'm Allen — a college student focused on Information Systems, with a
-              working interest in fintech, quantitative trading, and brand design.
-              I like taking a problem apart, whether it's a Java program, a
-              financial model, or a logo system, and rebuilding it cleanly.
-            </p>
-            <div id="heroButtons" class="d-flex flex-wrap gap-3 mb-5 fade">
-              <a href="#projects" class="btn btn-primary btn-lg rounded-0 px-4">See my work</a>
-              <a href="#contact" class="btn btn-outline-light btn-lg rounded-0 px-4">Get in touch</a>
-            </div>
-            <div id="heroStats" class="row gx-4 border-top border-secondary pt-4 fade">
-              <div class="col-4">
-                <div class="fs-6 fw-semibold text-uppercase text-primary">Fintech</div>
-                <div class="text-white-50 small">Digital banking &amp; markets</div>
-              </div>
-              <div class="col-4">
-                <div class="fs-6 fw-semibold text-uppercase text-success">Trading</div>
-                <div class="text-white-50 small">Quant &amp; technical analysis</div>
-              </div>
-              <div class="col-4">
-                <div class="fs-6 fw-semibold text-uppercase text-light">Design</div>
-                <div class="text-white-50 small">Brand &amp; product identity</div>
-              </div>
-            </div>
-          </div>
-          <div id="heroPortrait" class="col-lg-5 col-xl-4 mx-auto fade">
-            <div class="p-2 bg-black bg-opacity-25 border border-secondary shadow-lg">
-              <img src="profile.jpg"
-                   alt="Portrait of Allen wearing glasses and a navy suit jacket"
-                   class="img-fluid rounded-0 w-100">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
- 
-    <!-- SKILLS -->
-    <section id="skills" class="reveal-section bg-light border-bottom fade">
-      <div class="container py-5">
-        <div class="row mb-5">
-          <div class="col-lg-7">
-            <p class="text-primary fw-semibold text-uppercase small mb-2">What I work with</p>
-            <h2 class="display-6 fw-bold mb-0">Skills &amp; tools</h2>
-          </div>
-        </div>
- 
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card border-0 border-start border-4 border-primary shadow-sm rounded-0 h-100">
-              <div class="card-body p-4">
-                <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary rounded-0 p-3 mb-3">
-                  <i class="bi bi-code-slash fs-3"></i>
-                </div>
-                <h3 class="h5 fw-bold mb-3">Programming</h3>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-primary rounded-0">Java</span>
-                  <span class="badge bg-primary rounded-0">HTML &amp; CSS</span>
-                  <span class="badge bg-primary rounded-0">Bootstrap</span>
-                  <span class="badge bg-primary rounded-0">Git &amp; GitHub</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card border-0 border-start border-4 border-success shadow-sm rounded-0 h-100">
-              <div class="card-body p-4">
-                <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-10 text-success rounded-0 p-3 mb-3">
-                  <i class="bi bi-graph-up-arrow fs-3"></i>
-                </div>
-                <h3 class="h5 fw-bold mb-3">Business &amp; Finance</h3>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-success rounded-0">Financial modeling</span>
-                  <span class="badge bg-success rounded-0">Capital budgeting</span>
-                  <span class="badge bg-success rounded-0">Case analysis</span>
-                  <span class="badge bg-success rounded-0">Project management</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card border-0 border-start border-4 border-dark shadow-sm rounded-0 h-100">
-              <div class="card-body p-4">
-                <div class="d-inline-flex align-items-center justify-content-center bg-dark bg-opacity-10 text-dark rounded-0 p-3 mb-3">
-                  <i class="bi bi-palette fs-3"></i>
-                </div>
-                <h3 class="h5 fw-bold mb-3">Design</h3>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-dark rounded-0">Brand identity</span>
-                  <span class="badge bg-dark rounded-0">Logo systems</span>
-                  <span class="badge bg-dark rounded-0">Canva</span>
-                  <span class="badge bg-dark rounded-0">Minimalist / geometric style</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
- 
-    <!-- PROJECTS -->
-    <section id="projects" class="reveal-section bg-white fade">
-      <div class="container py-5">
-        <div class="row mb-5">
-          <div class="col-lg-7">
-            <p class="text-primary fw-semibold text-uppercase small mb-2">Selected work</p>
-            <h2 class="display-6 fw-bold mb-0">Projects &amp; accomplishments</h2>
-          </div>
-        </div>
- 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
- 
-          <div class="col">
-            <div class="card rounded-0 h-100 border-0 border-start border-4 border-primary shadow-sm">
-              <div class="card-body d-flex flex-column p-4">
-                <span class="badge text-bg-primary rounded-0 mb-3 align-self-start">Automation</span>
-                <h3 class="card-title h5 fw-bold">Dental Clinic Booking Automation</h3>
-                <p class="card-text text-body-secondary">
-                  Built a booking automation system for a dental clinic and redesigned
-                  its website with a more elegant, minimalist look and feel.
-                </p>
-                <a href="#" class="btn btn-outline-primary rounded-0 mt-auto align-self-start">
-                  View project <i class="bi bi-box-arrow-up-right ms-1"></i>
-                </a>
-              </div>
-            </div>
-          </div>
- 
-          <div class="col">
-            <div class="card rounded-0 h-100 border-0 border-start border-4 border-success shadow-sm">
-              <div class="card-body d-flex flex-column p-4">
-                <span class="badge text-bg-success rounded-0 mb-3 align-self-start">Trading</span>
-                <h3 class="card-title h5 fw-bold">Market Analysis &amp; Trading</h3>
-                <p class="card-text text-body-secondary">
-                  Independent market analyst and trader focused on Nasdaq futures,
-                  combining technical and fundamental analysis to build and manage
-                  trade setups. Currently running as a profitable trader.
-                </p>
-                <a href="#" class="btn btn-outline-success rounded-0 mt-auto align-self-start">
-                  View project <i class="bi bi-box-arrow-up-right ms-1"></i>
-                </a>
-              </div>
-            </div>
-          </div>
- 
-          <div class="col">
-            <div class="card rounded-0 h-100 border-0 border-start border-4 border-dark shadow-sm">
-              <div class="card-body d-flex flex-column p-4">
-                <span class="badge text-bg-dark rounded-0 mb-3 align-self-start">Coursework</span>
-                <h3 class="card-title h5 fw-bold">Java Practice Programs</h3>
-                <p class="card-text text-body-secondary">
-                  A set of Java exercises covering loops, conditionals, and
-                  method-based programs, written while working through core
-                  language fundamentals.
-                </p>
-                <a href="#" class="btn btn-outline-dark rounded-0 mt-auto align-self-start">
-                  View project <i class="bi bi-box-arrow-up-right ms-1"></i>
-                </a>
-              </div>
-            </div>
-          </div>
- 
-        </div>
- 
-        <div class="alert alert-secondary rounded-0 mt-4 border-0 bg-light" role="alert">
-          <i class="bi bi-info-circle me-2"></i>
-          Replace the placeholder cards above with your real projects, and point
-          each "View project" link at the actual repo, file, or live demo.
-        </div>
-      </div>
-    </section>
- 
-    <!-- CONTACT -->
-    <section id="contact" class="reveal-section bg-light border-top fade">
-      <div class="container py-5">
-        <div class="row mb-5">
-          <div class="col-lg-7">
-            <p class="text-primary fw-semibold text-uppercase small mb-2">Let's talk</p>
-            <h2 class="display-6 fw-bold mb-0">Contact</h2>
-          </div>
-        </div>
- 
-        <div class="row g-4">
-          <div class="col-lg-6">
-            <div class="card border-0 border-start border-4 border-primary shadow-sm rounded-0 h-100 p-4">
-              <div class="card-body d-flex flex-column">
-                <p class="fs-5">
-                  Open to school projects, internships, or just a conversation about
-                  markets, systems, or design. The fastest way to reach me is LinkedIn.
-                </p>
-                <a href="https://www.linkedin.com/in/your-linkedin-handle"
-                   target="_blank" rel="noopener"
-                   class="btn btn-primary rounded-0 mt-auto align-self-start px-4">
-                  <i class="bi bi-linkedin me-2"></i>Connect on LinkedIn
-                </a>
-              </div>
-            </div>
-          </div>
- 
-          <div class="col-lg-6">
-            <div class="card border-0 shadow-sm rounded-0 p-4">
-              <div class="card-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="name" class="form-label fw-semibold">Name</label>
-                    <input type="text" class="form-control rounded-0" id="name" name="name" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="email" class="form-label fw-semibold">Email</label>
-                    <input type="email" class="form-control rounded-0" id="email" name="email" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="message" class="form-label fw-semibold">Message</label>
-                    <textarea class="form-control rounded-0" id="message" name="message" rows="4" required></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-dark rounded-0 px-4">Send message</button>
-                  <p class="form-text mt-2">
-                    This form is front-end only. Connect it to a service like Formspree
-                    if you want it to actually deliver messages.
-                  </p>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
- 
-  </main>
- 
-  <footer class="bg-dark text-white-50 py-5 border-top border-primary border-3">
-    <div class="container">
-      <div class="row gy-4 align-items-center">
-        <div class="col-md-6">
-          <div class="fw-bold fs-5 text-white mb-1">Allen</div>
-          <p class="mb-0 small">Information Systems student — fintech, trading, design.</p>
-        </div>
-        <div class="col-md-6 d-flex justify-content-md-end align-items-center gap-4">
-          <a class="text-white-50 fs-4" href="https://github.com/your-github-username" target="_blank" rel="noopener" aria-label="GitHub profile">
-            <i class="bi bi-github"></i>
-          </a>
-          <a class="text-white-50 fs-4" href="https://www.linkedin.com/in/your-linkedin-handle" target="_blank" rel="noopener" aria-label="LinkedIn profile">
-            <i class="bi bi-linkedin"></i>
-          </a>
-          <a class="text-white-50 fs-4" href="mailto:you@example.com" aria-label="Email">
-            <i class="bi bi-envelope"></i>
-          </a>
-        </div>
-      </div>
-      <hr class="border-secondary my-4">
-      <p class="mb-0 small text-center text-md-start">
-        &copy; <span id="year"></span> Allen. All rights reserved.
-      </p>
+<header>
+  <nav class="nav" id="mainNav">
+    <div class="wrap">
+      <a class="brand" href="#top">Allen Adriane Tanjente<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
-  </footer>
+  </nav>
+</header>
  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+<main id="top">
  
-    // Staggered hero entrance using Bootstrap's own .fade/.show transition classes
-    var heroIds = ['heroBadge', 'heroHeadline', 'heroLead', 'heroButtons', 'heroPortrait', 'heroStats'];
-    heroIds.forEach(function (id, i) {
-      var el = document.getElementById(id);
-      if (el) {
-        setTimeout(function () { el.classList.add('show'); }, 150 * i);
-      }
-    });
+  <!-- ABOUT -->
+  <section id="about" class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="reveal show" id="heroText">
+          <span class="badge-pill">INFORMATION SYSTEMS STUDENT</span>
+          <h1 class="headline">Building at the edge of markets and software.</h1>
+          <p class="lead">
+            I'm Allen Adriane Tanjente — a college student focused on Information Systems, with a
+            working interest in fintech, quantitative trading, and brand design.
+            I like taking a problem apart, whether it's a Java program, a
+            financial model, or a logo system, and rebuilding it cleanly.
+          </p>
+          <div class="btn-row">
+            <a href="#projects" class="btn btn-solid">See my work</a>
+            <a href="#contact" class="btn btn-outline">Get in touch</a>
+          </div>
+          <div class="stat-row">
+            <div><h4><span class="dot dot-accent"></span>Fintech</h4><p>Digital banking &amp; markets</p></div>
+            <div><h4><span class="dot dot-gain"></span>Trading</h4><p>Quant &amp; technical analysis</p></div>
+            <div><h4><span class="dot dot-ink"></span>Design</h4><p>Brand &amp; product identity</p></div>
+          </div>
+        </div>
+        <div class="reveal show" id="heroImg">
+          <div class="portrait">
+            <img src="profile.jpg" alt="Portrait of Allen Adriane Tanjente wearing glasses and a navy suit jacket">
+          </div>
+        </div>
+      </div>
+    </div>
  
-    // One-time reveal per section as it scrolls into view (Bootstrap fade/show, no per-card repetition)
-    var sections = document.querySelectorAll('.reveal-section');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      sections.forEach(function (section) { observer.observe(section); });
-    } else {
-      sections.forEach(function (section) { section.classList.add('show'); });
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>FINTECH</span><span class="up">▲ QUANT TRADING</span><span>JAVA</span><span>BRAND IDENTITY</span>
+        <span>FINANCIAL MODELING</span><span class="up">▲ NASDAQ FUTURES</span><span>BOOTSTRAP</span><span>MINIMALIST DESIGN</span>
+        <span>FINTECH</span><span class="up">▲ QUANT TRADING</span><span>JAVA</span><span>BRAND IDENTITY</span>
+        <span>FINANCIAL MODELING</span><span class="up">▲ NASDAQ FUTURES</span><span>BOOTSTRAP</span><span>MINIMALIST DESIGN</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- SKILLS -->
+  <section id="skills" class="skills reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What I work with</p>
+        <h2>Skills &amp; tools</h2>
+      </div>
+      <div class="card-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="bi bi-code-slash"></i></div>
+          <h3><span class="skill-emoji" aria-hidden="true">💻</span> Programming</h3>
+          <div class="tag-row">
+            <span class="tag">☕ Java</span><span class="tag">🌐 HTML &amp; CSS</span>
+            <span class="tag">🅱️ Bootstrap</span><span class="tag">🐙 Git &amp; GitHub</span>
+          </div>
+        </div>
+        <div class="skill-card gain">
+          <div class="skill-icon"><i class="bi bi-graph-up-arrow"></i></div>
+          <h3><span class="skill-emoji" aria-hidden="true">📈</span> Business &amp; Finance</h3>
+          <div class="tag-row">
+            <span class="tag">📊 Financial modeling</span><span class="tag">💰 Capital budgeting</span>
+            <span class="tag">🧾 Case analysis</span><span class="tag">🗂️ Project management</span>
+          </div>
+        </div>
+        <div class="skill-card ink">
+          <div class="skill-icon"><i class="bi bi-palette"></i></div>
+          <h3><span class="skill-emoji" aria-hidden="true">🎨</span> Design</h3>
+          <div class="tag-row">
+            <span class="tag">🏷️ Brand identity</span><span class="tag">🎯 Logo systems</span>
+            <span class="tag">🖌️ Canva</span><span class="tag">🔷 Minimalist / geometric style</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Selected work</p>
+        <h2>Projects &amp; accomplishments</h2>
+      </div>
+      <div class="project-grid">
+ 
+        <!-- Dental Clinic Booking Automation -->
+        <div class="project-card">
+          <div class="slideshow" data-interval="3200">
+            <button type="button" class="slide-nav prev" aria-label="Previous picture"><i class="bi bi-chevron-left"></i></button>
+            <button type="button" class="slide-nav next" aria-label="Next picture"><i class="bi bi-chevron-right"></i></button>
+            <div class="slide active">
+              <div class="cal-grid" aria-hidden="true">
+                <div class="cal-cell">S</div><div class="cal-cell">M</div><div class="cal-cell">T</div>
+                <div class="cal-cell">W</div><div class="cal-cell">T</div><div class="cal-cell">F</div><div class="cal-cell">S</div>
+                <div class="cal-cell">9</div><div class="cal-cell">10</div><div class="cal-cell">11</div>
+                <div class="cal-cell">12</div><div class="cal-cell">13</div><div class="cal-cell picked">14</div><div class="cal-cell">15</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="chat-wrap">
+                <div class="bubble user">Can I book Tuesday 10:30?</div>
+                <div class="typing-dots"><span></span><span></span><span></span></div>
+                <div class="bubble bot">Confirmed ✅ Tue 10:30 AM</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="reminder-card">
+                <i class="bi bi-bell-fill"></i>
+                <div class="txt">
+                  <div>Reminder sent</div>
+                  <div>SMS + Email · 24h before</div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-dots">
+              <button class="dot active" aria-label="Slide 1"></button>
+              <button class="dot" aria-label="Slide 2"></button>
+              <button class="dot" aria-label="Slide 3"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">AUTOMATION</span>
+            <h3>Dental Clinic Booking Automation</h3>
+            <p>Built a booking automation system for a dental clinic and redesigned its website with a more elegant, minimalist look and feel.</p>
+            <a href="#" class="project-link">View project <i class="bi bi-box-arrow-up-right"></i></a>
+          </div>
+        </div>
+ 
+        <!-- Market Analysis & Trading -->
+        <div class="project-card gain">
+          <div class="slideshow" data-interval="3200">
+            <button type="button" class="slide-nav prev" aria-label="Previous picture"><i class="bi bi-chevron-left"></i></button>
+            <button type="button" class="slide-nav next" aria-label="Next picture"><i class="bi bi-chevron-right"></i></button>
+            <div class="slide active">
+              <div class="candles" aria-hidden="true">
+                <div class="candle up" style="height:30px;animation-delay:.02s;"></div>
+                <div class="candle down" style="height:18px;animation-delay:.08s;"></div>
+                <div class="candle up" style="height:46px;animation-delay:.14s;"></div>
+                <div class="candle up" style="height:60px;animation-delay:.2s;"></div>
+                <div class="candle down" style="height:24px;animation-delay:.26s;"></div>
+                <div class="candle up" style="height:72px;animation-delay:.32s;"></div>
+                <div class="candle up" style="height:52px;animation-delay:.38s;"></div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="trend-wrap">
+                <svg viewBox="0 0 220 64" aria-hidden="true">
+                  <polyline points="0,52 30,40 60,44 90,26 120,32 150,12 180,18 220,4"
+                    fill="none" stroke="#158F52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle r="4" fill="#158F52" class="trend-dot"
+                    style="offset-path:path('M0,52 30,40 60,44 90,26 120,32 150,12 180,18 220,4');"/>
+                </svg>
+                <p class="trend-label">SESSION · BULLISH</p>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="trade-ticket">
+                <span class="trade-badge">LONG · NQ1!</span>
+                <div class="row"><span>Entry</span><span>19,842.25</span></div>
+                <div class="row"><span>Exit</span><span>19,921.50</span></div>
+                <div class="row"><span>P/L</span><span class="pnl">+2.4R</span></div>
+              </div>
+            </div>
+            <div class="slide-dots">
+              <button class="dot active" aria-label="Slide 1"></button>
+              <button class="dot" aria-label="Slide 2"></button>
+              <button class="dot" aria-label="Slide 3"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">TRADING</span>
+            <h3>Market Analysis &amp; Trading</h3>
+            <p>Independent market analyst and trader focused on Nasdaq futures, combining technical and fundamental analysis to build and manage trade setups. Currently running as a profitable trader.</p>
+            <a href="#" class="project-link">View project <i class="bi bi-box-arrow-up-right"></i></a>
+          </div>
+        </div>
+ 
+        <!-- Java Practice Programs -->
+        <div class="project-card ink">
+          <div class="slideshow" data-interval="3200">
+            <button type="button" class="slide-nav prev" aria-label="Previous picture"><i class="bi bi-chevron-left"></i></button>
+            <button type="button" class="slide-nav next" aria-label="Next picture"><i class="bi bi-chevron-right"></i></button>
+            <div class="slide active">
+              <div class="terminal" aria-hidden="true">
+                <div><span class="c-key">for</span> (int i = 1; i &lt;= 10; i++) {</div>
+                <div>&nbsp;&nbsp;sum += i;</div>
+                <div>}<span class="cursor"></span></div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="console" aria-hidden="true">
+                <div>&gt; Loop: 1..10</div>
+                <div>&gt; Sum = <span class="ok">55</span></div>
+                <div>&gt; Status: <span class="ok">OK</span></div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="badge-row" aria-hidden="true">
+                <span class="check-badge"><i class="bi bi-check-circle-fill"></i>for-loop</span>
+                <span class="check-badge"><i class="bi bi-check-circle-fill"></i>if/else</span>
+                <span class="check-badge"><i class="bi bi-check-circle-fill"></i>methods</span>
+              </div>
+            </div>
+            <div class="slide-dots">
+              <button class="dot active" aria-label="Slide 1"></button>
+              <button class="dot" aria-label="Slide 2"></button>
+              <button class="dot" aria-label="Slide 3"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">COURSEWORK</span>
+            <h3>Java Practice Programs</h3>
+            <p>A set of Java exercises covering loops, conditionals, and method-based programs, written while working through core language fundamentals.</p>
+            <a href="#" class="project-link">View project <i class="bi bi-box-arrow-up-right"></i></a>
+          </div>
+        </div>
+ 
+      </div>
+      <p class="note"><i class="bi bi-info-circle me-1"></i> Replace the placeholder cards above with your real projects, and point each "View project" link at the actual repo, file, or live demo. The slideshow frames are illustrative — swap them for real screenshots of each project when you have them (see the JS comment below).</p>
+    </div>
+  </section>
+ 
+  <!-- CONTACT -->
+  <section id="contact" class="contact reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow gain">Let's talk</p>
+        <h2>Contact</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <p>Open to school projects, internships, or just a conversation about markets, systems, or design. The fastest way to reach me is LinkedIn.</p>
+          <a href="https://www.linkedin.com/in/allen-tanjente-6b8322316/" target="_blank" rel="noopener" class="btn btn-solid">
+            <i class="bi bi-linkedin"></i> Connect on LinkedIn
+          </a>
+        </div>
+        <div class="contact-card">
+          <form>
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline">Send message</button>
+            <p class="form-hint">This form is front-end only. Connect it to a service like Formspree if you want it to actually deliver messages.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+</main>
+ 
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Allen Adriane Tanjente</div>
+        <p class="foot-tagline">Information Systems student — fintech, trading, design.</p>
+      </div>
+      <div class="foot-icons">
+        <a href="https://github.com/your-github-username" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/allen-tanjente-6b8322316/" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="bi bi-linkedin"></i></a>
+        <a href="mailto:you@example.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      </div>
+    </div>
+    <hr class="foot-rule">
+    <p class="foot-copy">&copy; <span id="year"></span> Allen Adriane Tanjente. All rights reserved.</p>
+  </div>
+</footer>
+ 
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+ 
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { links.classList.remove('open'); });
+  });
+ 
+  var nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('compact', window.scrollY > 40);
+  });
+ 
+  var sections = document.querySelectorAll('.reveal:not(.show)');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    sections.forEach(function (s) { observer.observe(s); });
+  } else {
+    sections.forEach(function (s) { s.classList.add('show'); });
+  }
+ 
+  /* ---------- Project slideshows ----------
+     To swap a frame for a real screenshot, just replace a .slide's inner
+     markup with an <img src="your-screenshot.png" alt="..."> — the fade
+     and dot logic below works the same either way. */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ 
+  document.querySelectorAll('.slideshow').forEach(function (show) {
+    var slides = Array.prototype.slice.call(show.querySelectorAll('.slide'));
+    var dots = Array.prototype.slice.call(show.querySelectorAll('.slide-dots button'));
+    var prevBtn = show.querySelector('.slide-nav.prev');
+    var nextBtn = show.querySelector('.slide-nav.next');
+    var normalInterval = parseInt(show.getAttribute('data-interval'), 10) || 3200;
+    var holdInterval = 900; // faster cycling while pressed and held
+    var current = 0;
+    var timer = null;
+    var holdTimeout = null;
+    var isHolding = false;
+ 
+    function goTo(i) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      // restart any CSS "grow" animations on the newly active slide
+      slides[current].querySelectorAll('.candle, .check-badge').forEach(function (el) {
+        el.style.animation = 'none';
+        void el.offsetWidth;
+        el.style.animation = '';
+      });
     }
  
-    // Navbar tightens up on scroll using stock Bootstrap spacing/shadow classes
-    var nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 40) {
-        nav.classList.remove('py-3');
-        nav.classList.add('py-1', 'shadow');
-      } else {
-        nav.classList.add('py-3');
-        nav.classList.remove('py-1', 'shadow');
-      }
+    function runAt(ms) {
+      if (reduceMotion || slides.length < 2) return;
+      if (timer) clearInterval(timer);
+      timer = setInterval(function () { goTo(current + 1); }, ms);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+ 
+    // Runs automatically as soon as the page opens, and keeps cycling.
+    runAt(normalInterval);
+ 
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { goTo(i); runAt(normalInterval); });
     });
-  </script>
+    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); runAt(normalInterval); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); runAt(normalInterval); });
+ 
+    // Hover and hold on the picture itself: after a short dwell, speed up
+    // the automatic switching; releasing/leaving returns to the normal pace.
+    function startHold() {
+      if (reduceMotion || holdTimeout || isHolding) return;
+      holdTimeout = setTimeout(function () {
+        isHolding = true;
+        goTo(current + 1);
+        runAt(holdInterval);
+      }, 500);
+    }
+    function endHold() {
+      clearTimeout(holdTimeout);
+      if (isHolding) {
+        isHolding = false;
+        runAt(normalInterval);
+      }
+    }
+ 
+    show.addEventListener('mouseenter', startHold);
+    show.addEventListener('mouseleave', endHold);
+    show.addEventListener('mousedown', startHold);
+    show.addEventListener('mouseup', endHold);
+    show.addEventListener('touchstart', startHold, { passive: true });
+    show.addEventListener('touchend', endHold);
+  });
+</script>
 </body>
 </html>
