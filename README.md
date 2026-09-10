@@ -30,9 +30,13 @@ Live sections: About · Skills & Tools · Projects & Accomplishments · Contact
 
 🛠️ Tech
 -HTML5 / CSS3 (CSS variables, Grid, Flexbox)
+
 -Vanilla JavaScript (no dependencies)
+
 -Bootstrap Icons via CDN
+
 -Google Fonts: Space Grotesk, Inter, IBM Plex Mono
+
 -FormSubmit for contact form delivery
 
 No build tools, no npm install — just open portfolio.html in a browser, or deploy as a static site.
@@ -58,7 +62,9 @@ After that, every future submission is delivered straight to that inbox — no f
 
 📝 Still to personalize
   -Replace profile.jpg with a real photo (currently a placeholder path).
+  
   -Point each project's "View project" link at the real repo, file, or live demo (currently #).
+  
   -Swap the illustrative slideshow frames for real screenshots of each project, if you have them.
 
 📂 Structure
