@@ -7,16 +7,25 @@ A single-page portfolio site for an Information Systems student, built with plai
 Live sections: About · Skills & Tools · Projects & Accomplishments · Contact
 
 ✨ Features
-Sticky nav that compacts on scroll, with a mobile hamburger menu.
+-Sticky nav that compacts on scroll, with a mobile hamburger menu.
+
 -Animated hero with a scrolling stock-ticker strip and a duotone portrait that colorizes on hover.
+
 -Scroll-reveal animations on each section (respects prefers-reduced-motion).
+
 -Skills & Tools grid (Programming 💻, Business & Finance 📈, Design 🎨) with emoji-tagged skill chips.
+
 -Project cards with animated slideshows — each project (Booking Automation, Trading, Java Programs) has a small built-in slideshow illustrating the work:
   Auto-plays as soon as the page loads.
+  
   Bigger prev/next arrow buttons and larger dots for manual switching.
+  
   Hover-and-hold on a picture speeds up the auto-cycle; release returns to normal pace.
+  
   Frames are drawn with pure CSS/SVG — easy to swap for real screenshots (see comment in the <script> block near the slideshow logic).
+  
 -Working contact form — submits directly to allentanjente08@gmail.com via FormSubmit (no backend required).
+
 -Social links — LinkedIn, GitHub, and email, styled as circular buttons in the footer.
 
 🛠️ Tech
